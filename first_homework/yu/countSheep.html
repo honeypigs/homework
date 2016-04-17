@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>羊的数量</title>
+<script>
+function sheepNum () {
+	var num,year;
+	return {
+		setNum : function (num) {
+			return this.num;
+		},
+		setYear : function (year) {
+			return this.year;
+		},
+		countSheep:function (num,year) {
+			for (var i = 1;i <= year;i++) {
+				if (i<=4) {
+					console.log(num);
+				}else if(i > 4 && i < 15){
+					num++;
+					count(num,year--);
+				}else if (i>=20) {
+					num--;
+				}
+			}
+		}
+	};
+} //用了闭包，return暴露接口
+var a = new sheepNum();
+// a.num;// undifiend
+// a.year; // undifiend
+// a.setNum = 10; // num = 10
+// a.setYear = 10; // year = 10
+// a.count(10,10); // 总数
+</script>
+
+</head>
+<body>
+</body>
+</html>

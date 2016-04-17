@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES5 Array方法兼容ie8（forEach,fliter,reduce,map,indexOf）外加例子。</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		//indexOf
+		if (!Array.prototype.indexOf){
+			Array.prototype.indexOf = function(elt /*, from*/){
+				var len = this.length >>> 0;
+				var from = Number(arguments[1]) || 0;
+				from = (from < 0)? Math.ceil(from): Math.floor(from);
+				if (from < 0){
+					from += len;
+				}
+				for(; from < len; from++){
+					if (from in this &&this[from] === elt)
+						return from;
+				}
+				return -1;
+			};
+
+		}
+		
+		//forEach
+		if (typeof Array.prototype.forEach != "function") {
+			Array.prototype.forEach = function(fn,context) {
+				for(var k = 0,length = this.length;k<length;k++) {
+					if (typeof fn === "function" && object.prototype.hasOwnPrototype.call(this,k)) {
+						fn.call(context,this[k],k,this);
+					}
+				}
+			};
+		}
+		//filter
+		if (typeof Array.prototype.filter != "function") {
+			Array.prototype.filter = function(fn,context) {
+				var arr = [];
+				if (typeof fn === "function") {
+					for(var k=0,length=this.lenght;k<length;k++) {
+						fn.call(context,this[k],k,this) && arr.push(this[k]);
+					}
+				}
+				return arr;
+			};
+		}
+		//reduce
+		if (typeof Array.prototype.reduce != "function") {
+		  Array.prototype.reduce = function (callback, initialValue ) {
+		     var previous = initialValue, k = 0, length = this.length;
+		     if (typeof initialValue === "undefined") {
+		        previous = this[0];
+		        k = 1;
+		     }
+		     
+		    if (typeof callback === "function") {
+		      for (k; k < length; k++) {
+		         this.hasOwnProperty(k) && (previous = callback(previous, this[k], k, this));
+		      }
+		    }
+		    return previous;
+		  };
+		}
+
+		//map
+		if(typeof Array.prototype.map != "function") {
+			Array.prototype.map = function(fn,context) {
+				var arr = [];
+				if (typeof fn === "function") {
+					for(var k = 0,length=this.length;k<length;k++) {
+						arr.push(fn.call(context,this[k],k,this));
+					}
+				}
+				return arr;
+			};
+		}
+
+
+		
+	</script>
+</body>
+</html>
