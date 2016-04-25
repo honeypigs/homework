@@ -1,0 +1,16 @@
+body,p,button{
+	margin: 0px;
+	padding: 0px;
+}
+section{
+	margin: 50px auto;
+	width: 400px;
+	height: 500px;
+	border: 1px solid #ccc;
+}
+button{
+	width: 400px;
+	height: 50px;
+	font-size: 25px;
+	line-height: 50px;
+}
