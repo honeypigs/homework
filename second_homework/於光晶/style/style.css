@@ -1,16 +1,34 @@
 body,p,button{
 	margin: 0px;
 	padding: 0px;
+	font-family: "Microsoft Yahei";
 }
 section{
 	margin: 50px auto;
-	width: 400px;
-	height: 500px;
-	border: 1px solid #ccc;
+	width: 200px;
+	height: 150px;
+	background-color: #68bcfa;
+	overflow: hidden;
+	text-align: center;
+	color: white;
+
 }
 button{
-	width: 400px;
-	height: 50px;
-	font-size: 25px;
-	line-height: 50px;
+	width: 200px;
+	height: 30px;
+	font-size: 15px;
+	line-height: 30px;
+}
+.cityName{
+	width:200px;
+	height: 30px;
+}
+.weather-box{
+	padding-top: 20px;
+	background-color: #68bcfa;
+	width: 200px;
+	height: 90px;
+	text-align: center;
+	color: white;
+	float: left;
 }

@@ -49,7 +49,7 @@ window.onload=function() {
 	}
 	function getData(data,num) {
 		var oaverageTemp=data.list[num].temp.day+"℃";
-		var oWeather=data.list[num].weather[num].main;
+		var oWeather=data.list[0].weather[0].main;
 		var oDate=new Date(data.list[num].dt * 1000).toDateString();
 		return {oaverageTemp,oWeather,oDate};
 	}
@@ -62,7 +62,7 @@ window.onload=function() {
 		function move() {
 			location = location - speed;
 			box.style.marginLeft = location + "px";
-			if (location == -1200 ) {
+			if (location == -1000 ) {
 				location = 200;
 			}
 		}
