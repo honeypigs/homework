@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<link rel="stylesheet" href="forecast.css">
+	<script type="text/javascript" src="fore.js"></script>
+</head>
+<body> 
+  <div class="top">
+  	<p> forecast </p>
+  	<div class="icon"><i>&#xe607;</i></div>
+  </div>
+  <div id="wholeContainer">
+    <div id="slider">  
+      <div class="block">
+      	<div class="cityContainer">
+      	  <p>Place:</p>
+      	  <p class="city"></p>
+      	</div>
+      	<div class="dateContainer">
+      	  <p>Date is:</p>
+      	  <p class="date"></p>
+      	</div>
+      	<div class="picture">
+      	</div>
+      	<div class="forecast">
+      	  <p>Forecast is:</p>
+      	  <p class="forecast"></p>
+      	</div>
+      	<div class="tempContainer">
+      	  <p>temp:</p>
+		  <span class="min"></span>
+		  <span>~</span> 
+		  <span class="max"></span>
+      	</div>
+      </div>
+
+      <div class="block">
+      	<div class="cityContainer">
+      	  <p>Place:</p>
+      	  <p class="city"></p>
+      	</div>
+      	<div class="dateContainer">
+      	  <p>Date is:</p>
+      	  <p class="date"></p>
+      	</div>
+      	<div class="picture">
+      	</div>
+      	<div class="forecast">
+      	  <p>Forecast is:</p>
+      	  <p class="forecast"></p>
+      	</div>
+      	<div class="tempContainer">
+      	  <p>temp:</p>
+		  <span class="min"></span>
+		  <span>~</span> 
+		  <span class="max"></span>
+      	</div>
+      </div>
+
+      <div class="block">
+      	<div class="cityContainer">
+      	  <p>Place:</p>
+      	  <p class="city"></p>
+      	</div>
+      	<div class="dateContainer">
+      	  <p>Date is:</p>
+      	  <p class="date"></p>
+      	</div>
+      	<div class="picture">
+      	</div>
+      	<div class="forecast">
+      	  <p>Forecast is:</p>
+      	  <p class="forecast"></p>
+      	</div>
+      	<div class="tempContainer">
+      	  <p>temp:</p>
+		  <span class="min"></span>
+		  <span>~</span> 
+		  <span class="max"></span>
+      	</div>
+      </div>
+
+      <div class="block">
+      	<div class="cityContainer">
+      	  <p>Place:</p>
+      	  <p class="city"></p>
+      	</div>
+      	<div class="dateContainer">
+      	  <p>Date is:</p>
+      	  <p class="date"></p>
+      	</div>
+      	<div class="picture">
+      	</div>
+      	<div class="forecast">
+      	  <p>Forecast is:</p>
+      	  <p class="forecast"></p>
+      	</div>
+      	<div class="tempContainer">
+      	  <p>temp:</p>
+		  <span class="min"></span>
+		  <span>~</span> 
+		  <span class="max"></span>
+      	</div>
+      </div>
+  
+      <div class="block">
+      	<div class="cityContainer">
+      	  <p>Place:</p>
+      	  <p class="city"></p>
+      	</div>
+      	<div class="dateContainer">
+      	  <p>Date is:</p>
+      	  <p class="date"></p>
+      	</div>
+      	<div class="picture">
+      	</div>
+      	<div class="forecast">
+      	  <p>Forecast is:</p>
+      	  <p class="forecast"></p>
+      	</div>
+      	<div class="tempContainer">
+      	  <p>temp:</p>
+		  <span class="min"></span>
+		  <span>~</span> 
+		  <span class="max"></span>
+      	</div>
+      </div>
+    </div>
+
+    <ul id="list">
+	<li index = "1" class="on">1</li>
+	<li index = "2">2</li>
+	<li index = "3">3</li>
+	<li index = "4">4</li>
+	<li index = "5">5</li>			
+   </ul>
+  </div>
+</body>
+<script type="text/javascript">
+  var container = document.querySelector('#wholeContainer');
+  var slider = document.querySelector('#slider');
+  var list = document.querySelectorAll('#list');  
+  var index = 1;
+  
+
+   
+  function showButton () {
+  	for(var i = 0;i<list.lenth;i++){
+  		if (list[i].className == 'on') {
+  			list[i].className == '';
+  			break;
+  		}
+  		list[index-1].className = 'on';
+  	}
+  }
+
+  function animate (offset) {
+  	var newLeft = slider.style.left + offset;
+  	var time = 300;
+  	var inteval = 10;
+  	var speed = offset/(time/inteval);
+    function go () {
+    	if ((speed<0 &&  slider.style.left > newLeft) || (speed>0 &&  slider.style.left < newLeft))  {
+    		slider.style.left = speed + 'px';
+    		setTimeout(go,inteval);
+    	}
+    	else{
+    		slider.style.left = newLeft + 'px';
+            if (newLeft>0) {
+    	      slider.style.left = -3000 + 'px';
+            }
+            if (newLeft<-3000) {
+    	      slider.style.left = 0 + 'px';
+            }
+    	}
+    }
+
+    slider.style.left = newLeft + 'px';
+    if (newLeft>0) {
+    	slider.style.left = -3000 + 'px';
+    }
+    if (newLeft<-3000) {
+    	slider.style.left = 0 + 'px';
+    }
+  }	
+
+  for (var i = 0; i < list.length; i++) {
+  	list[i].onclick = function () {
+  		var myIndex = this.getAttribute('index');
+  		var offset = -600 * (myIndex - index);
+  		animate(offset);
+        index = myIndex;
+        showButton();
+  	}
+  }
+</script>
+</html>
