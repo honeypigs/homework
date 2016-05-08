@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>运动的小球</title>
+<style>
+body{
+	margin:0; 
+	padding:0;
+	width: 100%;
+	height: 1000px;
+}
+#circle{
+	width:20px; 
+	height:20px; 
+	background:#000; 
+	border-radius: 20px;
+	position:absolute; 
+}
+</style>
+<script>
+window.onload = function(){
+  var oCircle = document.querySelector("#circle");
+  var oP1 = document.querySelector("#p1");
+  var oP2 = document.querySelector("#p2");
+  var oP3 = document.querySelector("#p3");
+  window.onmousemove=function(evt) {
+    var oEvent = evt || window.event;
+    var scrollleft = window.scrollLeft || document.body.scrollLeft;
+    var scrolltop = window.scrollTop || document.body.scrollTop;
+    oCircle.style.left = oEvent.clientX + scrollleft+"px";
+    oCircle.style.top = oEvent.clientY + scrolltop +"px";
+    var deltaX = oEvent.clientX + scrollleft; 
+    var deltaY = oEvent.clientY + scrolltop;
+    var deltaD = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    oP1.innerHTML = '水平距离是'+deltaX+'px';
+    oP2.innerHTML = '竖直距离是'+deltaY+'px';
+    oP3.innerHTML = '直线距离是'+deltaD+'px';
+  };
+};
+</script>
+</head>
+<body>
+	<div id="circle"></div>
+	<div>
+		<p id="p1"></p>
+		<p id="p2"></p>
+		<p id="p3"></p>
+	</div>
+</body>
+</html>
